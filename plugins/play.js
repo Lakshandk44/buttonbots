@@ -25,9 +25,9 @@ let handler = async (m, { conn, command, text, usedPrefix, isPrems, isOwner }) =
   if (yt2 === false) throw 'semua server gagal'
   let { dl_link, thumb, title, filesize, filesizeF } = yt
   await conn.send2ButtonImg(m.chat, `
-*Judul:* ${title}
-*Ukuran File Audio:* ${filesizeF}
-*Ukuran File Video:* ${yt2.filesizeF}
+*name:* ${title}
+*size File Audio:* ${filesizeF}
+*size File Video:* ${yt2.filesizeF}
 *Server y2mate:* ${usedServer}
           `.trim(),
     await (await fetch(thumb)).buffer(), '© stikerin', 'AUDIO', `${usedPrefix}yta ${vid.url}`, 'VIDEO', `${usedPrefix}yt ${vid.url}`)
