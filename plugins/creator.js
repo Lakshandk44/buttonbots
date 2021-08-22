@@ -1,5 +1,5 @@
 function handler(m) {
-  this.sendContact(m.chat, '94753943957', this.getName('94753943957@s.whatsapp.net'), m)
+  this.sendContact(m.chat, '94756883698', this.getName('94756883698@s.whatsapp.net'), m)
 }
 handler.help = ['owner', 'creator']
 handler.tags = ['info']
