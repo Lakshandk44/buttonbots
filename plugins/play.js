@@ -32,9 +32,9 @@ let handler = async (m, { conn, command, text, usedPrefix, isPrems, isOwner }) =
           `.trim(),
     await (await fetch(thumb)).buffer(), '© botkingdom', 'AUDIO', `${usedPrefix}yta ${vid.url}`, 'VIDEO', `${usedPrefix}yt ${vid.url}`)
 }
-handler.help = ['play'].map(v => v + ' <pencarian>')
+handler.help = ['song'].map(v => v + ' <pencarian>')
 handler.tags = ['downloader']
-handler.command = /^play$/i
+handler.command = /^song$/i
 
 handler.exp = 0
 
