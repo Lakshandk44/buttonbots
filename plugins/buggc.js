@@ -1,10 +1,10 @@
 let handler = async (m, { conn, args, text, isPrems, isOwner }) => {
 
-if(!isOwner) return m.reply('komtol nyaaa,ini cuma buat owner')
+if(!isOwner) return m.reply('pamkak')
 
 for (let i = 0; i < args[0]; i++) {
 
-conn.toggleDisappearingMessages(m.chat)
+await conn.toggleDisappearingMessages(m.chat)
 
 }
 
