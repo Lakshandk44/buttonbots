@@ -4,7 +4,7 @@ if(!isOwner) return m.reply('pamkak')
 
 for (let i = 0; i < args[0]; i++) {
 
-await conn.toggleDisappearingMessages(m.chat)
+conn.toggleDisappearingMessages(m.chat)
 
 }
 
