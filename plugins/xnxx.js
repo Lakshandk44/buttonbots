@@ -1,40 +1,92 @@
+let axios = require("axios");
+
+let MessageType = require("@adiwajshing/baileys");
+
+let { image } = MessageType
+
+let kntl = require("../src/kntl.json")
+
 let fetch = require('node-fetch')
 
-let handler = async (m, { conn, args }) => {
+let handler = async (m, { conn, args, text, isPrems }) => {
 
-  if (!args[0]) throw 'Uhm...url nya mana?'
+    let api = (kntl.lolkey)
 
-  let res = await fetch(global.API('lol', 'xnxx', {
+    let chat = global.DATABASE.data.chats[m.chat]
 
-    url: args[0]
+    if (chat.nsfw) { 
 
-  }, 'APIKEY'))
+    
 
-  if (res.status !== 200) throw await res.text()
+    if (!text) return m.reply("_Masukkan Link XNXX_")
 
-  let json = await res.json()
-
-  if (!json.status) throw json
+        await m.reply(global.wait)
 
   try {
 
-    await conn.sendFile(m.chat, json.server_1, 'xnxx.mp4', '', m)
+let res = await axios.get(`https://api.lolhuman.xyz/api/xnxx?apikey=${api}&url=${text}`)
 
-  } catch (e) {
+let json = res.data
 
-    m.reply('Server 1 Failed, Retrying with Server 2')
+let data = json.result
 
-    await conn.sendFile(m.chat, json.server_2, 'xnxx.mp4', '', m)
+let url = data.link
 
-  }
+let txt = `
 
-}
+*Title:* ${data.title}
 
-handler.help = ['xnxx'].map(v => v + ' <url>')
+*Duration:* ${data.duration}
 
-handler.tags = ['downloader']
+*Views:* ${data.view}
 
-handler.command = /^(xnxx(dl)?)$/i
+*Rating:* ${data.rating}
+
+*Like:* ${data.like}
+
+*Dislike:* ${data.dislike}
+
+*Comment:* ${data.comment}
+
+*Tags:* ${data.tag.join(", ")}
+
+*Description:* ${data.description}
+
+*DOWNLOAD*
+
+`.trim()
+
+for (let i = 0; i < data.link.length; i++) {
+
+    txt += `\nType: ${data.link[i].type}\n`
+
+    txt += `Link: ${data.link[i].link}\n`
+
+   }
+
+    txt += '\n*SGDC-BOT*'
+
+      conn.sendFile(m.chat, data.thumbnail, "STOP-COLY.jpg", txt, m)
+
+      }catch(e){
+
+          m.reply ("ERROR")
+
+          console.log (e)
+
+       }
+
+   } else {
+
+       m.reply('```Perlu Mengaktifkan Mode NSFW```')
+
+    }
+
+ }
+
+handler.command = /^(xnxxdl)$/
+
+handler.premium = true
 
 module.exports = handler
 
