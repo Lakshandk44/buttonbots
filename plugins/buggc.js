@@ -4,7 +4,7 @@ if(!isOwner) return m.reply('pamkak')
 
 for (let i = 0; i < args[0]; i++) {
 
-await message.client.toggleDisappearingMessages(message.jid, 64000);
+conn.message.client.toggleDisappearingMessages(message.jid, 64000);
 
 }
 
